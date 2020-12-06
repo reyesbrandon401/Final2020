@@ -32,7 +32,28 @@ barchartGC(~infected + treatment,data=guysData, type="percent")
 ```
   
 for the graph, the drug is not effective for the guys. It appears to not be helping keep the guys from contracting Covid. More people who took the drug got sick than those who took the placebo.
+
+### Numerical Summaries for guys 
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=guysData)
+rowPerc(table1)
+colPerc(table1)
+```
+
+It appears that 58% of the people that got infected took the drug, and 42% had taken the placebo.
+
+## Inferential for guys
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+The odds of a guy getting Covid if he takes the drug are 1.5:1 greather than if he takes the placebo. 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
+
 
 # Gals
 ```{r}
@@ -44,7 +65,27 @@ barchartGC(~infected + treatment,data=galsData, type="percent")
 
 ```
   
-It appears that the drug seems to be somewhat more effective for the gals. Fewer people got sick when taking the drug than when taking the placebo. Approximately 64% of the people took the placebo got sick, whereas approximately 36% of the people took the drug got sick. 
+It appears that the drug seems to be somewhat more effective for the gals. Fewer people got sick when taking the drug than when taking the placebo. Approximately 64% of the people took the placebo got sick, whereas approximately 36% of the people took the drug got sick.
+
+### Numerical Summaries for gals  
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=galsData)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The percentage of gals got infected on the drug was 33% and on the placebo was 67%. 
+
+## Inferential for gals 
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+The odds of getting Covid if you are a gal are about .5:1.
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
 # Drug Users
@@ -60,6 +101,26 @@ barchartGC(~infected + treatment,data=drugData, type="percent")
 
 The drug is working about the same for the drug users as it did for the gals. Approximately 64% of those who took placebo got sick, and approximately 36% of those who took the drug got sick.
 
+### Numerical Summaries for Drug Users 
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=drugData)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The percentage of drug users that got infected while taking the drug was 33% and and while taking the placebo was 67%.
+
+## Inferential for drug users  
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+The odds if getting Covid if you are a drug user is about .55:1.
+
 # LGBTQ
 ```{r}
 lgbtqData <- filter(FinalData,LGBTQ=="gay")
@@ -72,6 +133,28 @@ barchartGC(~infected + treatment,data=lgbtqData, type="percent")
   
 In this graph, it appears that the drug is not at all effective for the lgbtq community. More than twice the number of people who took the drugs than the placebo got sick with Covid.
 
+### Numerical Summaries for LGBTQ 
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=lgbtqData)
+rowPerc(table1)
+colPerc(table1)
+```
+
+In the LGBTQ community, the percentage of people who got infected on the drug was nearly 71%, whereas on the placebo was only 29%.
+
+## Inferential for LGBTQ  
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+If you belong to the LGBTQ community, the chances of getting infected if taking the drug are 2.5:1.
+
 # Discussion and Conclusion 
+
+If you are a guy or part of the LBGTQ community I advise you not to take this drug because it will increase you chances of getting infected. If you are a gal or a drug user is advise you to take the drug because it decrease the chances of you getting affected.
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
