@@ -1,7 +1,7 @@
 ---
 title: "Covid91 vaccine study Final2020"
-author: "Put your name here!"
-date: "put the date here"
+author: "Brandon Reyes!"
+date: "December 5, 2020"
 output: html_document
 ---
 
@@ -20,16 +20,50 @@ FinalData <- OldData %>% mutate(infected = recode(infected, aids = "covid", none
 
 A new  preventative vaccine (covid91) is under test in clinical trials. Given the nature of this vaccine it is suspected that the drug may exhibit different effectiveness across the variety of subpopulations tracked. Consider population subgroups by gender( guys and gals), drug use, and sexual orientation. Write a complete report that separately considers this drug for each subgroup and your recommendations as to whether people in the subgroup should take the vaccine.
 
-# Methods
+# Guys
+```{r}
+guysData <- filter(FinalData,sex=="guy")
+```
 
+```{r}
+barchartGC(~infected + treatment,data=guysData)
+barchartGC(~infected + treatment,data=guysData, type="percent")
+
+```
+  
+for the graph, the drug is not effective for the guys. It appears to not be helping keep the guys from contracting Covid. More people who took the drug got sick than those who took the placebo.
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
 
-# Results
+# Gals
+```{r}
+galsData <- filter(FinalData,sex=="gal")
+```
+```{r}
+barchartGC(~infected + treatment,data=galsData)
+barchartGC(~infected + treatment,data=galsData, type="percent")
 
+```
+  
+It appears that the drug seems to be somewhat more effective for the gals. Fewer people got sick when taking the drug than when taking the placebo. Approximately 64% of the people took the placebo got sick, whereas approximately 36% of the people took the drug got sick. 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
+# Drug Users
+```{r}
+drugData <- filter(FinalData,DrugUser=="yes")
+```
 
+```{r}
+barchartGC(~infected + treatment,data=drugData)
+barchartGC(~infected + treatment,data=drugData, type="percent")
 
-# Discussion and Conclusion
+```
+
+The drug is working about the same for the drug users as it did for the gals. Approximately 64% of those who took placebo got sick, and approximately 36% of those who took the drug got sick.
+
+# LGBTQ
+```{r}
+lgbtqData <- filter(FinalData,LGBTQ=="gay")
+```
+# Discussion and Conclusion 
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
